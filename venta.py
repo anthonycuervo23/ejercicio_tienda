@@ -2,6 +2,9 @@ class Venta:
     def __init__(self):
         self.ventas = []
         self.tipos = {}
+        self.cantidad_a = 0
+        self.cantidad_b = 0
+        self.cantidad_c = 0
         self.total = 0
         self.total_tipo_a = 0
         self.total_tipo_b = 0
@@ -13,14 +16,14 @@ class Venta:
         while pedidos:
             self.registrar_venta()
             otro_pedido = input("desea agregar otro pedido? SI/NO \n")
-            if otro_pedido == "SI":
+            if otro_pedido.upper() == "SI":
                 pedidos
-            else:
+            elif otro_pedido.upper() == "NO":
                 pedidos = False
                 print("----------------------------")
                 print(f"hoy hiciste {len(self.ventas)} ventas")
                 print("----------------------------\n")
-                # print(f"{self.tipos}")
+                print(f"{self.tipos}")
                 # print(f"el tipo de pantalon mas vendido fue: ")
                 print(f"cantidad vendida por cada pantalon: ")
                 print("----------------------------")
@@ -35,9 +38,9 @@ class Venta:
 
     def obtener_datos_venta(self):
         tipo = input("que tipo de pantalon vendiste: ")
-        if self.validar_tipo(tipo):
+        if self.validar_tipo(tipo.upper()):
             self.obtener_cantidad
-            return tipo
+            return tipo.upper()
         else:
             return self.registrar_venta()
 
